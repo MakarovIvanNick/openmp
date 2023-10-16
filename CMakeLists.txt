@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.16)
+project(open_mp)
+
+set(CMAKE_CXX_STANDARD 17)
+find_package(OpenMP REQUIRED)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif ()
+find_package(OpenCV)
+include_directories(${OpenCV_INCLUDE_DIRS})
+add_executable(open_mp main.cpp)
+target_link_libraries(open_mp ${OpenCV_LIBS})
